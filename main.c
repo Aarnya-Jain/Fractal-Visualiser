@@ -117,6 +117,13 @@ int main(int argc,char *argv[]) {
                 fractalEdit = !fractalEdit;
             }
 
+            if(GuiButton(
+              (Rectangle){w-260,h-60,200,20},
+              "Take Screenshot"
+            )){
+              TakeScreenshot("./output/Image.png");
+            }
+
         EndDrawing();
     }
 

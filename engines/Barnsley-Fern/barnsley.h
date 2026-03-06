@@ -94,6 +94,15 @@ void DrawLeafColor(Vector2 screenStart, float scale, int maxt,float pallete)
 }
 
 int DrawFern(int l,int w,int h,float *t,float *scale,float *pallete,bool *color) {
+    Vector2 start = {w/2,h-20};
+
+    if(*color){
+        DrawLeafColor(start,*scale,*t,*pallete);
+    } else {
+        DrawLeaf(start,*scale,*t);
+    }
+
+
     GuiLabel((Rectangle){120,l+=30, 200, 20}, "Fern Parameters");
 
     GuiSliderBar(
@@ -121,14 +130,5 @@ int DrawFern(int l,int w,int h,float *t,float *scale,float *pallete,bool *color)
         pallete, 0.0f, 1.0f
         );
     }
-
-    Vector2 start = {w/2,h-20};
-
-    if(*color){
-        DrawLeafColor(start,*scale,*t,*pallete);
-    } else {
-        DrawLeaf(start,*scale,*t);
-    }
-
     return l;
 }

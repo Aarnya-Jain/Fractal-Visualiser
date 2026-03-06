@@ -68,6 +68,23 @@ void DrawBranchColor(Vector2 start,float length,float angle,float thickness,floa
 
 int DrawTree(int l,int w,int h,float *length,float *thickness,float *ratio,float *pallete,float *angleDegL,float *angleDegR,bool *symmetric,bool *wind,bool *color) {
 
+  float time = GetTime();
+
+  float windStrength = 0.15f;
+  float windSpeed = 1.5f;
+
+  float windValue = 0.0f;
+  if(*wind){
+      windValue = sinf(time * windSpeed) * windStrength;
+  }
+
+  Vector2 start = {w/2,h-20};
+  if(*color){
+    DrawBranchColor(start,*length,0,*thickness,*ratio,(*angleDegL)*DEG2RAD,(*angleDegR)*DEG2RAD,windValue,*thickness,*pallete);
+  } else{
+    DrawBranch(start,*length,0,*thickness,*ratio,(*angleDegL)*DEG2RAD,(*angleDegR)*DEG2RAD,windValue,*thickness);
+  }
+
   GuiCheckBox(
       (Rectangle){120,l+=10,15,15},
       "Symmetry",
@@ -138,22 +155,7 @@ int DrawTree(int l,int w,int h,float *length,float *thickness,float *ratio,float
     );
   }
 
-  float time = GetTime();
 
-  float windStrength = 0.15f;
-  float windSpeed = 1.5f;
-
-  float windValue = 0.0f;
-  if(*wind){
-      windValue = sinf(time * windSpeed) * windStrength;
-  }
-
-  Vector2 start = {w/2,h-20};
-  if(*color){
-    DrawBranchColor(start,*length,0,*thickness,*ratio,(*angleDegL)*DEG2RAD,(*angleDegR)*DEG2RAD,windValue,*thickness,*pallete);
-  } else{
-    DrawBranch(start,*length,0,*thickness,*ratio,(*angleDegL)*DEG2RAD,(*angleDegR)*DEG2RAD,windValue,*thickness);
-  }
 
   return l;
 }
