@@ -118,7 +118,7 @@ int DrawTree(int l,int w,int h,float *length,float *thickness,float *ratio,float
         angleDegL, 0.0f, 180.0f
     );
 
-    angleDegR = angleDegL;
+    *angleDegR = *angleDegL;
   }
 
   else{
